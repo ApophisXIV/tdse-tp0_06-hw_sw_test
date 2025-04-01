@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define EJ_N 12
+#define EJ_N 14
 
 #if EJ_N == 1
 
@@ -335,4 +335,34 @@ int main() {
 }
 
 #elif EJ_N == 13
+
+#include "parser_xml.h"
+
+int main() {
+
+    read_xml("prueba.xml");
+    return 0;
+}
+#elif EJ_N == 14
+
+#include "bst.h"
+
+int8_t fn(void *element_1, void *element_2) {
+    int value_1 = *(int *)element_1;
+    int value_2 = *(int *)element_2;
+    if ((value_1 - value_2) <= 0)
+        return -1;
+    else
+        return 1;
+}
+
+int main(int argc, char const *argv[]) {
+    bst_t *bst = get_bst_instance(fn);
+    int a = 1, b = 2, c = 3;
+    bst_add(bst, &c);
+    bst_add(bst, &b);
+    bst_add(bst, &a);
+    return 0;
+}
+
 #endif
